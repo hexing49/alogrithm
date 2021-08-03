@@ -1,7 +1,10 @@
 package dataStructure.string;
 
+import javax.swing.tree.TreeNode;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Solution {
     public int firstUniqChar(String s) {
@@ -68,7 +71,29 @@ public class Solution {
 
     }
 
-    public static void main(String[] args) {
+    //https://leetcode-cn.com/problems/reverse-words-in-a-string/
+    // 反转字符串中的所有单词
+    public String reverseWords(String s) {
+        String trim = s.trim();
+        String[] words = trim.split(" ");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = words.length - 1; i >= 0; --i) {
+            if (Objects.equals(words[i], "")) {
+                continue;
+            }
+            stringBuilder.append(words[i]);
+            if (i == 0) {
+                break;
+            }
+            stringBuilder.append(" ");
+        }
+        return stringBuilder.toString();
+    }
 
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        String the_sky_is_blue = solution.reverseWords("a good   example");
+        System.out.println(the_sky_is_blue);
     }
 }
