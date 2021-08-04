@@ -45,7 +45,6 @@ public class Solution {
     }
 
 
-
     // 返回s中覆盖t所有字符的最小字串
     // https://leetcode-cn.com/problems/minimum-window-substring/
     public String minWindow(String s, String t) {
@@ -123,5 +122,31 @@ public class Solution {
             }
         }
         return false;
+    }
+
+    //https://leetcode-cn.com/problems/valid-triangle-number/
+    // 统计三角形个数
+    public int triangleNumber(int[] nums) {
+        Arrays.sort(nums);
+        int res = 0;
+        for (int i = nums.length - 1; i >= 2; --i) {
+            // 利用双指针不断平移去寻找满足条件的两边
+            int l = 0, r = i - 1;
+            while (l < r) {
+                if (nums[l] + nums[r] > nums[i]) {
+                    res += r - l;
+                    r--;
+                } else {
+                    l++;
+                }
+            }
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int i = solution.triangleNumber(new int[]{1, 2, 2, 2, 3, 4});
+        System.out.println(i);
     }
 }

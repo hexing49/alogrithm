@@ -113,6 +113,58 @@ public class Solution {
         return max;
     }
 
+    //https://leetcode-cn.com/problems/symmetric-tree/
+    // 对称二叉树
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        return helper(root.left, root.right);
+    }
+
+    private boolean helper(TreeNode left, TreeNode right) {
+        if (left == right) {
+            return true;
+        }
+        if (left == null || right == null) {
+            return false;
+        }
+        return (left.val == right.val) && helper(left.left, right.right) && helper(left.right, right.left);
+    }
+
+    // https://leetcode-cn.com/problems/invert-binary-tree/
+    // 翻转二叉树
+    public TreeNode invertTree(TreeNode root) {
+        helperInvert(root);
+        return root;
+    }
+
+    private void helperInvert(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        TreeNode temp = null;
+        temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        helperInvert(root.left);
+        helperInvert(root.right);
+    }
+
+    // https://leetcode-cn.com/problems/path-sum/
+    // 路经总和
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        if (root == null) {
+            return false;
+        }
+
+        if (root.left == null && root.right == null) {
+            // 说明是一条分支的叶子节点
+            return targetSum == root.val;
+        }
+        return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         TreeNode treeNode1 = new TreeNode(1);

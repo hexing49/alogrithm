@@ -50,13 +50,16 @@ public class Solution {
 
     // 最大子序和
     // https://leetcode-cn.com/problems/maximum-subarray/
+  /*  输入：nums = [-2,1,-3,4,-1,2,1,-5,4]
+    输出：6
+    解释：连续子数组 [4,-1,2,1] 的和最大，为 6*/
     public int maxSubArray(int[] nums) {
+        // 如果数组就一个数字，那么res就是第一个元素
         int res = nums[0], pre = 0;
         for (int num : nums) {
             // dp公式
             pre = Math.max(pre + num, num);
-            // 将当前值与最大值比较
-            res = Math.max(res, pre);
+            res = Math.max(pre, res);
         }
         return res;
     }
