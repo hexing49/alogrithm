@@ -95,5 +95,7 @@ public class Solution {
         Solution solution = new Solution();
         String the_sky_is_blue = solution.reverseWords("a good   example");
         System.out.println(the_sky_is_blue);
+        Long l = 1234567890L;
+        System.out.println(l.toString());
     }
 }

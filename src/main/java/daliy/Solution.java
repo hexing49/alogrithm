@@ -1,5 +1,6 @@
 package daliy;
 
+import javax.swing.tree.TreeNode;
 import java.util.*;
 
 public class Solution {
@@ -145,8 +146,9 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
-        int i = solution.triangleNumber(new int[]{1, 2, 2, 2, 3, 4});
-        System.out.println(i);
+        String phone = "13654073686";
+        String substring = phone.substring(0, 4) + "**" + phone.substring(phone.length() - 4);
+        System.out.println(substring);
+
     }
 }

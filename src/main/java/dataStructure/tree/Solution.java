@@ -1,9 +1,12 @@
 package dataStructure.tree;
 
 
+import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@ToString
 class TreeNode {
     int val;
     TreeNode left;
@@ -92,6 +95,9 @@ public class Solution {
         if (res.size() == level) {
             res.add(new ArrayList<Integer>());
         }
+        if (res.size() == level) {
+            res.add(new ArrayList<Integer>());
+        }
         res.get(level).add(node.val);
         dns(node.left, level + 1, res);
         dns(node.right, level + 1, res);
@@ -165,13 +171,72 @@ public class Solution {
         return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
     }
 
+    //https://leetcode-cn.com/problems/search-in-a-binary-search-tree/
+    // 二叉树中的搜索
+    public TreeNode searchBST(TreeNode root, int val) {
+        if (root == null || root.val == val) {
+            return root;
+        }
+        return val < root.val ? searchBST(root.left, val) : searchBST(root.right, val);
+    }
+
+    //https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/
+    // BFT的插入
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+        if (root == null) {
+            return new TreeNode(val);
+        }
+        if (val > root.val) {
+            root.right = insertIntoBST(root.right, val);
+        } else {
+            root.left = insertIntoBST(root.left, val);
+        }
+        return root;
+    }
+
+    public void helerInsert(TreeNode root, int val) {
+        if (val > root.val && root.right == null) {
+            TreeNode treeNode = new TreeNode(val);
+            root.right = treeNode;
+            return;
+        } else if (val < root.val && root.left == null) {
+            TreeNode treeNode = new TreeNode(val);
+            root.left = treeNode;
+            return;
+        } else {
+            if (val > root.val) {
+                insertIntoBST(root.right, val);
+            } else {
+                insertIntoBST(root.left, val);
+            }
+        }
+    }
+
+    //https://leetcode-cn.com/problems/validate-binary-search-tree/
+    // 验证二叉收搜索树
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        if (root.left != null && root.left.val >= root.val) {
+            return false;
+        }
+        if (root.right != null && root.left.val <= root.val) {
+            return false;
+        }
+
+        return isValidBST(root.left) && isValidBST(root.right);
+    }
+
+    private void test(int i) {
+        System.out.println(i);
+    }
     public static void main(String[] args) {
         Solution solution = new Solution();
         TreeNode treeNode1 = new TreeNode(1);
-        TreeNode treeNode2 = new TreeNode(2);
-        treeNode1.left = treeNode2;
-        int i = solution.maxDepth(treeNode1);
-        System.out.println(i);
+        TreeNode treeNode = solution.insertIntoBST(treeNode1, 2);
+        System.out.println(treeNode1);;
+
 
     }
 }
