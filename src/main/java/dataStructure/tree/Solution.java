@@ -5,6 +5,7 @@ import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @ToString
 class TreeNode {
@@ -232,10 +233,13 @@ public class Solution {
         System.out.println(i);
     }
     public static void main(String[] args) {
-        Solution solution = new Solution();
-        TreeNode treeNode1 = new TreeNode(1);
-        TreeNode treeNode = solution.insertIntoBST(treeNode1, 2);
-        System.out.println(treeNode1);;
+        List<String> list = new ArrayList<>();
+        list.add(null);
+        list.add(null);
+        list.add("11");
+        list.stream().filter(Objects::nonNull).forEach(data -> {
+            System.out.println(data);
+        });
 
 
     }

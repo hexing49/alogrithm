@@ -1,14 +1,15 @@
 package daliy;
 
-import javax.swing.tree.TreeNode;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Solution {
     // https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
     // 无重复字符的最长字符
     // 滑动窗口
     public int lengthOfLongestSubstring(String s) {
-
+        // breakThough：起点是k，终点是rk，距离是rk-k+1，下一次起点是k+1，那么可以保证k+1到rk是不重复的，所以只需要判断rk+1以及之后的数据是否满足循环条件即可
         Set<Character> occ = new HashSet<Character>();
         int n = s.length();
         // 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动
@@ -38,10 +39,12 @@ public class Solution {
             chars[0] = (chars[1] >= '4' && chars[1] <= '9') ? '1' : '2';
         }
         if (chars[1] == '?') {
-            chars[1] = chars[0] == '2' ? '3' : '9';
+            chars[1] = chars[0] == '1' ? '9' : '3';
         }
-        chars[3] = chars[3] == '?' ? '5' : chars[3];
-        chars[4] = chars[4] == '?' ? '9' : chars[4];
+        if (chars[3] == '?') {
+            chars[3] = '5';
+        }
+        chars[4] = chars[4] == '?' ? '5' : chars[4];
         return new String(chars);
     }
 
@@ -58,6 +61,25 @@ public class Solution {
             }
         }
         return null;
+    }
+
+    /// https://leetcode-cn.com/problems/longest-palindrome/
+    public int longestPalindrome1(String s) {
+        int[] res = new int[128];
+        int ans = 0;
+        int n = s.length();
+        for (int i = 0; i < n; ++i) {
+            res[s.charAt(i)] ++;
+        }
+        for (int i : res) {
+            // 这一步可以过滤出 1或者0个数的字符，同时让基数的字符计算为偶数，很巧妙
+            ans += i /2 * 2;
+            // 如果这个字符的数量为奇数（1，3，5）,同时结果是偶数，就+1，很巧妙+1
+            if (i % 2 == 1 && ans % 2 == 0) {
+                ans ++;
+            }
+        }
+        return ans;
     }
 
     // 最长回文字串 动态规划
@@ -148,7 +170,7 @@ public class Solution {
     public static void main(String[] args) {
         String phone = "13654073686";
         String substring = phone.substring(0, 4) + "**" + phone.substring(phone.length() - 4);
-        System.out.println(substring);
+        System.out.println(2 % 4);
 
     }
 }
