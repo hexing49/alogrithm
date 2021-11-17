@@ -42,6 +42,7 @@ public class Solution {
             chars[1] = chars[0] == '1' ? '9' : '3';
         }
         if (chars[3] == '?') {
+
             chars[3] = '5';
         }
         chars[4] = chars[4] == '?' ? '5' : chars[4];
