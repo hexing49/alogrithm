@@ -6,6 +6,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 public class Solution {
+
+    // https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/
+    // 二维数组的查找
     public boolean findNumberIn2DArray(int[][] matrix, int target) {
      /*   for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
@@ -18,12 +21,15 @@ public class Solution {
         }
         return false;*/
         // 右顶点旋转45°为二叉搜索树
-        int i = matrix.length - 1, j = 0;
-        while (i >= 0 && j < matrix[0].length) {
+        if (matrix.length == 0) {
+            return false;
+        }
+        int i = 0, j = matrix[0].length - 1;
+        while (i < matrix.length && j >= 0) {
             if (matrix[i][j] < target) {
-                j++;
+                i ++;
             } else if (matrix[i][j] > target) {
-                i--;
+                j--;
             } else {
                 return true;
             }
@@ -124,5 +130,6 @@ public class Solution {
         char c = '\0';
         System.out.println(c);
         System.out.println(6 / 8);
+
     }
 }
