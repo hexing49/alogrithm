@@ -37,6 +37,46 @@ public class Solution {
         return false;
     }
 
+
+    // https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/
+    // 旋转数组的最小数字 sword-11
+    public int minArray(int[] numbers) {
+        if (numbers.length == 0) {
+            return 0;
+        }
+        int result = numbers[0];
+        for (int i : numbers) {
+            if (result > i) {
+                return i;
+            }
+        }
+        return result;
+    }
+
+
+    //https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/
+    // 替换空格 sword-05
+    public String replaceSpace(String s) {
+        if (s.length() == 0) {
+            return s;
+        }
+        char[] chars = new char[3 * s.length()];
+        int t = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            if (s.charAt(i) == ' ') {
+                chars[t++] = '%';
+                chars[t++] = '2';
+                chars[t++] = '0';
+            } else {
+                chars[t++] = s.charAt(i);
+            }
+        }
+        return new String(chars, 0, t);
+        //return s.replace(" ", "%20");
+    }
+
+
+    //
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int length = nums1.length + nums2.length;
         int targetIndex = length / 2;
@@ -62,6 +102,9 @@ public class Solution {
         return result;
     }
 
+
+    //https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/
+    // 矩阵中的路径 sword-12
     public boolean exist(char[][] board, String word) {
         char[] chars = word.toCharArray();
         for (int i = 0; i < board.length; ++i) {
@@ -74,8 +117,7 @@ public class Solution {
         }
         return false;
     }
-    //https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/
-    // 矩阵中的路径
+
     private boolean dfs(char[][] board, char[] chars, int i, int j, int k) {
         // 越界大咩
         if (i >= board.length || j >= board[0].length || i < 0 || j < 0 ||  board[i][j] != chars[k]) {
@@ -94,6 +136,7 @@ public class Solution {
 
         return res;
     }
+
     // https://leetcode-cn.com/problems/jian-sheng-zi-lcof/
     // 剑指 Offer 14- I. 剪绳子
     public int cuttingRope(int n) {
