@@ -1,5 +1,6 @@
 package daliy;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +9,7 @@ public class Solution {
     // https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
     // 无重复字符的最长字符
     // 滑动窗口
+    // elevate lever  alleviate
     public int lengthOfLongestSubstring(String s) {
         // breakThough：起点是k，终点是rk，距离是rk-k+1，下一次起点是k+1，那么可以保证k+1到rk是不重复的，所以只需要判断rk+1以及之后的数据是否满足循环条件即可
         Set<Character> occ = new HashSet<Character>();
@@ -42,7 +44,6 @@ public class Solution {
             chars[1] = chars[0] == '1' ? '9' : '3';
         }
         if (chars[3] == '?') {
-
             chars[3] = '5';
         }
         chars[4] = chars[4] == '?' ? '5' : chars[4];
@@ -70,20 +71,21 @@ public class Solution {
         int ans = 0;
         int n = s.length();
         for (int i = 0; i < n; ++i) {
-            res[s.charAt(i)] ++;
+            res[s.charAt(i)]++;
         }
         for (int i : res) {
             // 这一步可以过滤出 1或者0个数的字符，同时让基数的字符计算为偶数，很巧妙
-            ans += i /2 * 2;
+            ans += i / 2 * 2;
             // 如果这个字符的数量为奇数（1，3，5）,同时结果是偶数，就+1，很巧妙+1
             if (i % 2 == 1 && ans % 2 == 0) {
-                ans ++;
+                ans++;
             }
         }
         return ans;
     }
 
     // 最长回文字串 动态规划
+    //
     public String longestPalindrome(String s) {
   /*      整体思想就是，申请一个二维的数组初始化为 0，然后判断对应的字符是否相等，相等的话
         arr [ i ][ j ] = arr [ i - 1 ][ j - 1] + 1 。
@@ -148,7 +150,7 @@ public class Solution {
         return false;
     }
 
-    //https://leetcode-cn.com/problems/valid-triangle-number/
+    // https://leetcode-cn.com/problems/valid-triangle-number/
     // 统计三角形个数
     public int triangleNumber(int[] nums) {
         Arrays.sort(nums);
@@ -168,10 +170,41 @@ public class Solution {
         return res;
     }
 
+    /**
+     *
+     * @param x
+     * @return
+     */
+    public boolean isPalindrome(int x) {
+        //边界判断
+        if (x < 0) return false;
+        int div = 1;
+        //
+        while (x / div >= 10) div *= 10;
+        while (x > 0) {
+            int left = x / div;
+            int right = x % 10;
+            if (left != right) return false;
+            x = (x % div) / 10;
+            div /= 100;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
-        String phone = "13654073686";
+    /*  *//*  String phone = "13654073686";
         String substring = phone.substring(0, 4) + "**" + phone.substring(phone.length() - 4);
         System.out.println(2 % 4);
+        sout
+*//*
+        System.out.println(String.valueOf('2').equals("1"));
+        System.out.println((int)('0') - ('0'));
+        Solution solution = new Solution();
+        solution.isPalindrome(1221);*/
 
+        BigDecimal cumulativeQty = BigDecimal.ZERO;
+        cumulativeQty = cumulativeQty.add(new BigDecimal(10));
+        cumulativeQty =  cumulativeQty.add(new BigDecimal(20));
+        System.out.println(cumulativeQty);
     }
 }

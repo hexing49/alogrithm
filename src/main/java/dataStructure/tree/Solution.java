@@ -96,9 +96,6 @@ public class Solution {
         if (res.size() == level) {
             res.add(new ArrayList<Integer>());
         }
-        if (res.size() == level) {
-            res.add(new ArrayList<Integer>());
-        }
         res.get(level).add(node.val);
         dns(node.left, level + 1, res);
         dns(node.right, level + 1, res);
