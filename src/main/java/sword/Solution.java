@@ -1,10 +1,5 @@
 package sword;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
-
 public class Solution {
 
     // https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/
@@ -27,7 +22,7 @@ public class Solution {
         int i = 0, j = matrix[0].length - 1;
         while (i < matrix.length && j >= 0) {
             if (matrix[i][j] < target) {
-                i ++;
+                i++;
             } else if (matrix[i][j] > target) {
                 j--;
             } else {
@@ -76,7 +71,7 @@ public class Solution {
     }
 
 
-    //
+    // 两个数组合并有序
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int length = nums1.length + nums2.length;
         int targetIndex = length / 2;
@@ -109,31 +104,28 @@ public class Solution {
         char[] chars = word.toCharArray();
         for (int i = 0; i < board.length; ++i) {
             for (int j = 0; j < board[0].length; ++j) {
-                if(dfs(board, chars, i, j, 0)) {
+                if (dfs(i, j, 0, board, chars)) {
                     return true;
                 }
-
             }
         }
         return false;
+
     }
 
-    private boolean dfs(char[][] board, char[] chars, int i, int j, int k) {
-        // 越界大咩
-        if (i >= board.length || j >= board[0].length || i < 0 || j < 0 ||  board[i][j] != chars[k]) {
+    private boolean dfs(int i, int j, int length, char[][] board, char[] chars) {
+        if (i < 0 || j < 0 || i == board.length || j == board[0].length || board[i][j] != chars[length]) {
             return false;
         }
-        if (k == chars.length - 1) {
+        if (length == chars.length - 1) {
             return true;
         }
         board[i][j] = '\0';
-
-        boolean res = dfs(board, chars, i - 1, j, k + 1) ||
-                dfs(board, chars, i + 1, j, k + 1) ||
-                dfs(board, chars, i, j - 1, k + 1) ||
-                dfs((board), chars, i, j + 1, k + 1);
-        board[i][j] = chars[k];
-
+        boolean res = dfs(i - 1, j, length + 1, board, chars) ||
+                dfs(i + 1, j, length + 1, board, chars) ||
+                dfs(i, j - 1, length + 1, board, chars) ||
+                dfs(i, j + 1, length + 1, board, chars);
+        board[i][j] = chars[length];
         return res;
     }
 
@@ -141,17 +133,17 @@ public class Solution {
     // 剑指 Offer 14- I. 剪绳子
     public int cuttingRope(int n) {
         //定义dp数组，dp[i]表示长度为i的绳子剪成m端后长度的最大乘积(m>1)
-        int dp[] = new int[n+1];
+        int dp[] = new int[n + 1];
         //初始化
         dp[2] = 1;
         //目标：求出dp[n]
         //dp[2]已知，从dp[3]开始求，直到求出dp[n]
-        for(int i = 3;i <= n;i++){
+        for (int i = 3; i <= n; i++) {
             //首先对绳子剪长度为j的一段,其中取值范围为 2 <= j < i
-            for(int j = 2;j < i;j++){
+            for (int j = 2; j < i; j++) {
 
                 //转移方程如下
-                dp[i] = Math.max(dp[i],Math.max(j*(i-j),j*dp[i-j]));
+                dp[i] = Math.max(dp[i], Math.max(j * (i - j), j * dp[i - j]));
                 //Math.max(j*(i-j),j*dp[i-j]是由于减去第一段长度为j的绳子后，可以继续剪也可以不剪
                 //Math.max(dp[i],Math.max(j*(i-j),j*dp[i-j]))是当j不同时，求出最大的dp[i]
             }
@@ -163,8 +155,6 @@ public class Solution {
     public int movingCount(int m, int n, int k) {
         return 0;
     }
-
-
 
 
     public static void main(String[] args) {
