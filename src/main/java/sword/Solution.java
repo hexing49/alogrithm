@@ -129,8 +129,14 @@ public class Solution {
         return res;
     }
 
+    // https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/
+    //todo 机器人的运动范围 sword- 13 上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？
+    public int movingCount(int m, int n, int k) {
+        return 0;
+    }
+
     // https://leetcode-cn.com/problems/jian-sheng-zi-lcof/
-    // 剑指 Offer 14- I. 剪绳子
+    // sword-14- I. 剪绳子
     public int cuttingRope(int n) {
         //定义dp数组，dp[i]表示长度为i的绳子剪成m端后长度的最大乘积(m>1)
         int dp[] = new int[n + 1];
@@ -152,8 +158,20 @@ public class Solution {
         return dp[n];
     }
 
-    public int movingCount(int m, int n, int k) {
-        return 0;
+    // https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/
+    // 调整数组顺序使奇数位于偶数前面 sword-21
+    public int[] exchange(int[] nums) {
+        int slow = 0, fast = 0;
+        for (; fast < nums.length; ++fast) {
+            if ((nums[fast] & 1) == 1) {
+                int t = 0;
+                t = nums[slow];
+                nums[slow] = nums[fast];
+                nums[fast] = t;
+                slow ++;
+            }
+        }
+        return nums;
     }
 
 
