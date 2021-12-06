@@ -1,9 +1,20 @@
-package sword;
+package algorithm.sword;
+
+import java.util.*;
+
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode(int x) {
+        val = x;
+    }
+}
 
 public class Solution {
 
     // https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/
-    // 二维数组的查找
+    // 二维数组的查找 sword-
     public boolean findNumberIn2DArray(int[][] matrix, int target) {
      /*   for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
@@ -162,13 +173,13 @@ public class Solution {
     // 调整数组顺序使奇数位于偶数前面 sword-21
     public int[] exchange(int[] nums) {
         int slow = 0, fast = 0;
-        for (; fast < nums.length; ++fast) {
+        for (; fast < nums.length; fast++) {
+            // 如果是奇数，则和前面
             if ((nums[fast] & 1) == 1) {
-                int t = 0;
-                t = nums[slow];
+                int t = nums[slow];
                 nums[slow] = nums[fast];
                 nums[fast] = t;
-                slow ++;
+                slow++;
             }
         }
         return nums;
@@ -177,10 +188,33 @@ public class Solution {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        solution.findMedianSortedArrays(new int[]{1, 2}, new int[]{3, 4});
+      /*  solution.findMedianSortedArrays(new int[]{1, 2}, new int[]{3, 4});
         char c = '\0';
         System.out.println(c);
-        System.out.println(6 / 8);
+        System.out.println(6 / 8);*/
+        int i = 0;
+        ListNode l1 = new ListNode(1);
+        ListNode l2 = new ListNode(2);
+        ListNode l3 = new ListNode(3);
+        ArrayList<String> list = new ArrayList<>();
+        list.add("11");
+
+        LinkedList<Object> objects = new LinkedList<>();
+        objects.add("1");
+  /*      for (String s : list) {
+            list.remove(s);
+            System.out.println("执行了:" + i ++);
+        }*/
+
+        // 实际上在插入数据时候，在ArrayList
+        // judge whether expected mod count == modCound
+        Iterator<String> iterator = list.iterator();
+        Iterator<Object> iterator1 = objects.iterator();
+        while (iterator.hasNext()) {
+            String next = iterator.next();
+            iterator.remove();
+            System.out.println(next);
+        }
 
     }
 }
