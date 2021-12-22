@@ -1,12 +1,8 @@
-package designPartten;
+package designPartten.singleton;
 
-import designPartten.singleton.Singleton;
+import designPartten.User;
 
-import javax.xml.crypto.Data;
 import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @Author hexing37
