@@ -1,6 +1,7 @@
 package test;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -46,6 +47,11 @@ public class Test {
         char c = new String("00101001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000").charAt(7);
         int i = c - '0';
         System.out.println(i);
+
+        BigDecimal bigDecimal = new BigDecimal(BigInteger.ZERO);
+        double v = bigDecimal.doubleValue();
+        System.out.println(v);
+        System.out.println(v < 0);
 
     }
 }
