@@ -1,7 +1,6 @@
-package dataStructure;
+package algorithm.dataStructure;
 
-import daliy.Student;
-import daliy.TestInterface;
+import common.Student;
 
 import javax.sound.sampled.EnumControl;
 import javax.swing.tree.TreeNode;

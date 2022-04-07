@@ -13,8 +13,21 @@ class ListNode {
 
 public class Solution {
 
+    //https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/
+    // 数组中重复的数字 sword-03
+    public int findRepeatNumber(int[] nums) {
+        boolean[] container = new boolean[nums.length];
+        for (int i : nums) {
+            if (container[i] = true) {
+                return i;
+            }
+            container[i] = true;
+        }
+        return 0;
+    }
+
     // https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/
-    // 二维数组的查找 sword-
+    // 二维数组的查找 sword-04
     public boolean findNumberIn2DArray(int[][] matrix, int target) {
      /*   for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
@@ -33,9 +46,9 @@ public class Solution {
         int i = 0, j = matrix[0].length - 1;
         while (i < matrix.length && j >= 0) {
             if (matrix[i][j] < target) {
-                i++;
+                i ++;
             } else if (matrix[i][j] > target) {
-                j--;
+                j --;
             } else {
                 return true;
             }
@@ -44,26 +57,10 @@ public class Solution {
     }
 
 
-    // https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/
-    // 旋转数组的最小数字 sword-11
-    public int minArray(int[] numbers) {
-        if (numbers.length == 0) {
-            return 0;
-        }
-        int result = numbers[0];
-        for (int i : numbers) {
-            if (result > i) {
-                return i;
-            }
-        }
-        return result;
-    }
-
-
     //https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/
     // 替换空格 sword-05
     public String replaceSpace(String s) {
-        if (s.length() == 0) {
+       /* if (s.length() == 0) {
             return s;
         }
         char[] chars = new char[3 * s.length()];
@@ -77,8 +74,23 @@ public class Solution {
                 chars[t++] = s.charAt(i);
             }
         }
-        return new String(chars, 0, t);
-        //return s.replace(" ", "%20");
+        return new String(chars, 0, t);*/
+        if (s.length() == 0) {
+            return s;
+        }
+        char[] chars = new char[s.length() * 3];
+        int aux = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == ' ') {
+                chars[aux++] = '%';
+                chars[aux++] = '2';
+                chars[aux++] = '0';
+            }else {
+                chars[aux++] = s.charAt(i);
+            }
+        }
+        return new String(chars, 0, aux);
+       // return s.replace(" ", "%20");
     }
 
 
@@ -105,6 +117,21 @@ public class Solution {
 
         }
         double result = length % 2 == 0 ? ((tempArray[targetIndex] + tempArray[tempIndex - 1]) / 2.0) : tempArray[targetIndex];
+        return result;
+    }
+
+    // https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/
+    // 旋转数组的最小数字 sword-11
+    public int minArray(int[] numbers) {
+        if (numbers.length == 0) {
+            return 0;
+        }
+        int result = numbers[0];
+        for (int i : numbers) {
+            if (result > i) {
+                return i;
+            }
+        }
         return result;
     }
 
@@ -141,7 +168,7 @@ public class Solution {
     }
 
     // https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/
-    //todo 机器人的运动范围 sword- 13 上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？
+    // 机器人的运动范围 sword- 13 上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？
     public int movingCount(int m, int n, int k) {
         return 0;
     }

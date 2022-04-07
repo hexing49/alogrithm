@@ -1,4 +1,4 @@
-package daliy;
+package common;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

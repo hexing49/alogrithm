@@ -2,6 +2,7 @@ package designPartten;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -13,9 +14,15 @@ import java.io.Serializable;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class User implements Serializable {
-    private static final long serialVersionUID = -1;
     String name;
 
     String gender;
+
+    String age;
+
+    String test;
+
+    String test2;
 }

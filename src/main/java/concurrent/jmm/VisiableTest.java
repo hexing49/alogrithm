@@ -27,9 +27,8 @@ public class VisiableTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        System.out.println(SourceEnum.DEPTSHARE);
-        System.out.println(SourceEnum.VMI);
-
+        Byte b = new Byte("1");
+        System.out.println(b == 1);
 
     }
 }

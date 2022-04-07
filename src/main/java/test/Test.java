@@ -2,10 +2,9 @@ package test;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.*;
 
 /**
  * @Author hexing37
@@ -13,7 +12,7 @@ import java.util.Set;
  * @Description
  */
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnknownHostException {
    /*     String s1 = "a";
         String s2 = "b";
         String s = "a";
@@ -52,6 +51,30 @@ public class Test {
         double v = bigDecimal.doubleValue();
         System.out.println(v);
         System.out.println(v < 0);
+        Father father = new Father();
+        AoStatusEnum aoStatusEnum = null;
+        AoStatusEnum aoStatusEnum1 = father.buildCancelStatus("1");
+        System.out.println(aoStatusEnum1.getCode());
+
+        InetAddress addr = InetAddress.getLocalHost();
+        String hostname = addr.getHostName();
+        System.out.println("Local HostAddress: " + addr.getHostAddress());
+
+        System.out.println("Local host name: " + hostname);
+
+        StringBuilder stringBuilder = new StringBuilder("010K1619628");
+        System.out.println(stringBuilder.toString().substring(0,stringBuilder.toString().length()-1));
+        BigDecimal monopolizeStockDecimal = BigDecimal.valueOf(36);
+
+        double tempNum = monopolizeStockDecimal.multiply(new BigDecimal(50)).divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_EVEN).doubleValue();
+        System.out.println(tempNum);
+        Integer realCalcNum = (int) Math.floor(tempNum);//按比例计算，向下取整的数
+
+        String array = "1234";
+        String[] split = array.split(";");
+        System.out.println(split[0]);
+        String a = "aa" + UUID.randomUUID();
+                System.out.println(a );
 
     }
 }

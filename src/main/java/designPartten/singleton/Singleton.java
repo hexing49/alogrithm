@@ -15,6 +15,9 @@ import java.io.Serializable;
  * @Description
  */
 public class Singleton implements Serializable {
+
+    private static final long serialVersionUID = -1131868478960947804L;
+
     public volatile transient static Singleton singleton;
 
     private Singleton() {
@@ -39,8 +42,9 @@ public class Singleton implements Serializable {
 
     }
 
-    private Object readResolve() {
-        return Singleton.getInstance();
-    }
+  /*  private Object readResolve() {
+        Singleton instance = getInstance();
+        return instance;
+    }*/
 
 }

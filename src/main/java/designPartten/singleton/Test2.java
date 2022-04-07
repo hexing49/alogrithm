@@ -17,7 +17,10 @@ public class Test2 {
 
     public static void main(String[] args) throws Exception {
         ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(new File(file)));
-        User singleton = (User) objectInputStream.readObject();
+        Singleton singleton = (Singleton) objectInputStream.readObject();
+        Singleton instance = Singleton.getInstance();
+        System.out.println();
+        System.out.println(instance);
         System.out.println(singleton);
     }
 

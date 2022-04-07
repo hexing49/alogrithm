@@ -1,4 +1,4 @@
-package daliy;
+package algorithm.daliy;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
