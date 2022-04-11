@@ -53,26 +53,33 @@ public class Sorts {
             return;
         }
         int pivot = nums[left];
-        int left  = l;
-        int right = r;
-        while (left < right) {
-            for (int i = left + 1; i <= right; i++) {
-                if (nums[i] < pivot) {
-                    lt++;
-                    swap(nums, i, lt);
-                }
+        int l = left, r = right;
+        while (l < r) {
+            while (l < r && nums[r] >= pivot) {
+                r--;
+            }
+            while (l < r && nums[l] <= pivot) {
+                l++;
+            }
+            if (l < r) {
+                swap(nums, r, l);
             }
         }
-        int temp = nums[left];
         nums[left] = nums[l];
-        nums[l] = temp;
-        quickSort(nums, ++l, r);
-        quickSort(nums, l, --r);
+        nums[l] = pivot;
+        quickSort(nums, left, l - 1);
+        quickSort(nums, l + 1, right);
+    }
+
+    private static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 
     public static void main(String[] args) {
         int[] ints = {1, 1, 3, 2};
-        quickSort(ints,0,ints.length -1);
+        quickSort(ints, 0, ints.length - 1);
         for (int i : ints) {
             System.out.print(i + " ");
         }
