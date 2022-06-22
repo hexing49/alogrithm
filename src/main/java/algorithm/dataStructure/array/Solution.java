@@ -1,7 +1,11 @@
 package algorithm.dataStructure.array;
 
 import javax.swing.plaf.multi.MultiButtonUI;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 
 public class Solution {
     // 数组场景1，前缀和presum
@@ -30,7 +34,7 @@ public class Solution {
             if (left == 0) {
                 return preNums[right];
             }
-            return preNums[right ] - preNums[left - 1];
+            return preNums[right] - preNums[left - 1];
         }
     }
 
@@ -63,21 +67,37 @@ public class Solution {
     // https://leetcode.cn/problems/subarray-sum-equals-k/
     public int subarraySum(int[] nums, int k) {
         int n = nums.length;
-        int[] preSums = new int[n + 1];
-        for (int i = 1; i <= n; ++i) {
-            preSums[i] = preSums[i - 1] + nums[i - 1];
+// map：前缀和 -> 该前缀和出现的次数
+        HashMap<Integer, Integer>
+                preSum = new HashMap<>();
+// base case
+
+        preSum.put(0, 1);
+        int res = 0, sum0_i = 0;
+        for (int i = 0; i < n; i++) {
+            sum0_i += nums[i];
+// 这是我们想找的前缀和 nums[0..j]
+            int sum0_j = sum0_i - k;
+// 如果前⾯有这个前缀和，则直接更新答案
+            if (preSum.containsKey(sum0_j))
+                res += preSum.get(sum0_j);
+// 把前缀和 nums[0..i] 加⼊并记录出现次数
+            preSum.put(sum0_i, preSum.getOrDefault(sum0_i, 0) + 1);
         }
-        for (int i = 0;)
-        return 0;
+        return res;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         int[] a = {-2, 0, 3, -5, 2, -1};
         NumArray numArray = new NumArray(a);
         System.out.println();
 
         int[][] array = {{3, 0, 1, 4, 2}, {5, 6, 3, 2, 1}, {1, 2, 0, 1, 5}, {4, 1, 0, 1, 7}, {1, 0, 3, 0, 5}};
         NumMatrix numMatrix = new NumMatrix(array);
-        System.out.println(numMatrix.sumRegion(0,0,1,0));
+        System.out.println(numMatrix.sumRegion(0, 0, 1, 0));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date time = new Date(); // 获取当前时间
+        Date parse = sdf.parse("2022-06-01");
+        System.out.println(parse.getTime());
     }
 }
